@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Prateek Raina on 02-12-2016.
@@ -16,11 +17,15 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.DataObjectHolder> {
 
     private static String LOG_TAG = "RecyclerViewAdapter";
-    private static ArrayList<DataObject> mDataset;
+    private ArrayList<DataObject> mDataset;
+    private ArrayList<DataObject> duplicateDataset;
     //private String address;
 
     public RecyclerViewAdapter(ArrayList<DataObject> myDataset) {
         this.mDataset = myDataset;
+        this.duplicateDataset = new ArrayList<DataObject>();
+        this.duplicateDataset = this.mDataset;
+
     }
 
     @Override
@@ -47,7 +52,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mDataset.size();
     }
 
-    public static class DataObjectHolder extends RecyclerView.ViewHolder{
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        this.mDataset = new ArrayList<DataObject>();
+        if (charText.length() == 0) {
+            this.mDataset.addAll(this.duplicateDataset);
+        } else {
+            for (DataObject item : this.duplicateDataset) {
+                if (item.getLOCATION().toLowerCase(Locale.getDefault()).contains(charText.toLowerCase()) ||
+                        item.getCITY().toLowerCase(Locale.getDefault()).contains(charText.toLowerCase())) {
+                    this.mDataset.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public class DataObjectHolder extends RecyclerView.ViewHolder {
         TextView name_textview;
         TextView location_textview;
         TextView city_textview;
@@ -70,8 +91,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                    v.getContext().startActivity(intent);
 
                     int position = getAdapterPosition();
-                    Intent intent = new Intent(v.getContext(),MapsActivity.class);
-                    intent.putExtra("completeAddress",mDataset.get(position).getADDRESS().trim()
+                    Intent intent = new Intent(v.getContext(), MapsActivity.class);
+
+                    intent.putExtra("completeAddress", mDataset.get(position).getADDRESS().trim()
                             + " " + mDataset.get(position).getLOCATION().trim()
                             + " " + mDataset.get(position).getCITY().trim());
                     v.getContext().startActivity(intent);
