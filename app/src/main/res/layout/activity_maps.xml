@@ -1,19 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.gamersden.MapsActivity">
-
-    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context="com.prateekraina.gamersden.MapsActivity"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
         android:orientation="horizontal">
 
         <android.support.design.widget.TextInputLayout
@@ -33,7 +30,7 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:hint="Location"
-                android:textColorHint="#CCC"/>
+                android:textColorHint="@android:color/white"/>
         </android.support.design.widget.TextInputLayout>
 
         <!--<ImageButton-->
@@ -48,13 +45,22 @@
         <Button
             android:id="@+id/findRouteButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:background="@color/colorPrimary"
-            android:padding="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:text="Find Route"
             android:textColor="@color/colorText"
             android:textSize="16sp" />
     </LinearLayout>
 
-</FrameLayout>
+    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

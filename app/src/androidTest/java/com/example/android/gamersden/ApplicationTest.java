@@ -1,4 +1,4 @@
-package com.example.android.gamersden;
+package com.prateekraina.gamersden;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

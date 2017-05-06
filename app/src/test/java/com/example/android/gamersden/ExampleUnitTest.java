@@ -1,4 +1,4 @@
-package com.example.android.gamersden;
+package com.prateekraina.gamersden;
 
 import org.junit.Test;
 

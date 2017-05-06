@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="0dp"
     android:orientation="vertical"
-    tools:context="com.example.android.gamersden.AddDetailActivity">
+    tools:context="com.prateekraina.gamersden.AddDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
